@@ -1,0 +1,20 @@
+{
+  "creativeGroup": "allweapon:all_weapon_tab",
+  "enchantments": [
+    {
+      "id": "minecraft:smite",
+      "lvl": 20
+    }
+  ],
+  "name": "allweapon:jie",
+  "properties": {
+    "max_damage": 120,
+    "sword_type": [
+      "bewitched"
+    ]
+  },
+  "render": {
+    "model": "allweapon:model/blade/jie/model.obj",
+    "texture": "allweapon:model/blade/jie/texture.png"
+  }
+}

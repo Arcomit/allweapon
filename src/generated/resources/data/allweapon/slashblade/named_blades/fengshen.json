@@ -1,0 +1,28 @@
+{
+  "creativeGroup": "allweapon:all_weapon_tab",
+  "enchantments": [
+    {
+      "id": "minecraft:infinity",
+      "lvl": 20
+    },
+    {
+      "id": "minecraft:sharpness",
+      "lvl": 20
+    },
+    {
+      "id": "minecraft:looting",
+      "lvl": 20
+    }
+  ],
+  "name": "allweapon:fengshen",
+  "properties": {
+    "max_damage": 120,
+    "sword_type": [
+      "bewitched"
+    ]
+  },
+  "render": {
+    "model": "allweapon:model/blade/fengshen/model.obj",
+    "texture": "allweapon:model/blade/fengshen/texture.png"
+  }
+}

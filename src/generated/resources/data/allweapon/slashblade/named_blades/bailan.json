@@ -1,0 +1,14 @@
+{
+  "creativeGroup": "allweapon:all_weapon_tab",
+  "name": "allweapon:bailan",
+  "properties": {
+    "max_damage": 120,
+    "sword_type": [
+      "bewitched"
+    ]
+  },
+  "render": {
+    "model": "allweapon:model/blade/bailan/model.obj",
+    "texture": "allweapon:model/blade/bailan/texture.png"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "creativeGroup": "allweapon:all_weapon_tab",
+  "name": "allweapon:zhanyue",
+  "properties": {
+    "max_damage": 120,
+    "sword_type": [
+      "bewitched"
+    ]
+  },
+  "render": {
+    "model": "allweapon:model/blade/zhanyue/model.obj",
+    "texture": "allweapon:model/blade/zhanyue/texture.png"
+  }
+}

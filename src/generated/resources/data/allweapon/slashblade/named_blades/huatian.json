@@ -1,0 +1,20 @@
+{
+  "creativeGroup": "allweapon:all_weapon_tab",
+  "enchantments": [
+    {
+      "id": "minecraft:bane_of_arthropods",
+      "lvl": 20
+    }
+  ],
+  "name": "allweapon:huatian",
+  "properties": {
+    "max_damage": 120,
+    "sword_type": [
+      "bewitched"
+    ]
+  },
+  "render": {
+    "model": "allweapon:model/blade/huatiankuanggu/model.obj",
+    "texture": "allweapon:model/blade/huatiankuanggu/texture.png"
+  }
+}

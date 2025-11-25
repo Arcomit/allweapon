@@ -1,0 +1,34 @@
+{
+  "item_group.allweapon.tab": "§e「§l§6万物皆可为兵刃§r§e」",
+
+  "item.allweapon.bailan": "§a白兰剑§9「§l§e君§r§9」",
+  "item.allweapon.baiqiyue": "§f白の契约",
+  "item.allweapon.baishoujianwang": "§7百兽剑王§9「§l§7巨狮§r§9」",
+  "item.allweapon.baiyueding": "§f白の约定",
+  "item.allweapon.chanshizhe": "夜空之剑§9「§l§8阐释者§r§9」",
+  "item.allweapon.fengshen": "§6奉神刀§9「§l§6鹿§r§9」",
+  "item.allweapon.fengzhiying": "§e不可视之刃§9「§l§f风之影§r§9」·风",
+  "item.allweapon.guangjian": "§e光剑§9「§l§5监视者§r§9」",
+  "item.allweapon.huami": "§a花之妖精§9「§l§d弥葵§r§9」·花",
+  "item.allweapon.huatian": "§f花天§7狂骨§9「§l§3花天§r§9」",
+  "item.allweapon.kuanggu": "§f花天§7狂骨§9「§l§7狂骨§r§9」",
+  "item.allweapon.jie": "§5灾厄之源§9「§l§8劫§r§9」",
+  "item.allweapon.jiyi": "§4炎§c极§1必§b寒§9「§l极意§r§9」",
+  "item.allweapon.liurenruohuo": "§c炎王§9「§l§c流刃若火§r§9」",
+  "item.allweapon.lvluo": "§a生机§9「§l§a绿萝§r§9」",
+  "item.allweapon.qinggui": "§2森森幽罗§9「§l§a青鬼§r§9」",
+  "item.allweapon.xiaoyue": "§6狗年专属§9「§l§e啸月§r§9」",
+  "item.allweapon.xuezou": "§b极寒刃§9「§l§f雪走§r§9」·雪",
+  "item.allweapon.yingyue": "§7欺骗者§9「§l§8影§f月§r§9」·月",
+  "item.allweapon.youming": "§0死神§9「§l§7幽之名§r§9」",
+  "item.allweapon.zhanyue": "§f白§9「§l§c天锁斩月§r§9」",
+
+  "slash_art.allweapon.huan_ying_die": "§d幻影蝶",
+  "slash_art.allweapon.bai_gu_huan_die": "§a百谷幻 §d蝶",
+  "slash_art.allweapon.yi_shan": "§e一闪",
+
+
+  "slash_art.slashblade.none": "无",
+
+  "enchantment.level.20": "§9「§l§6永恒级§r§9」"
+}

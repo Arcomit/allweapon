@@ -1,0 +1,28 @@
+{
+  "creativeGroup": "allweapon:all_weapon_tab",
+  "enchantments": [
+    {
+      "id": "minecraft:knockback",
+      "lvl": 6
+    },
+    {
+      "id": "minecraft:punch",
+      "lvl": 6
+    },
+    {
+      "id": "minecraft:infinity",
+      "lvl": 20
+    }
+  ],
+  "name": "allweapon:chanshizhe",
+  "properties": {
+    "max_damage": 120,
+    "sword_type": [
+      "bewitched"
+    ]
+  },
+  "render": {
+    "model": "allweapon:model/blade/chanshizhe/model.obj",
+    "texture": "allweapon:model/blade/chanshizhe/texture.png"
+  }
+}

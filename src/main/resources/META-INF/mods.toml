@@ -1,0 +1,40 @@
+modLoader = "javafml" #mandatory
+loaderVersion = "${loader_version_range}" #mandatory This is typically bumped every Minecraft version by Forge. See our download page for lists of versions.
+license = "${mod_license}"
+issueTrackerURL="https://github.com/Arcomit/allweapon/issues"
+[[mods]] #mandatory
+modId = "${mod_id}" #mandatory
+version = "${mod_version}" #mandatory
+displayName = "${mod_name}" #mandatory
+authors = "${mod_authors}" #optional
+credits="Furia, 0999312, Moi_Meng, Arcomit, AbbyQAQ"
+displayURL = "https://www.curseforge.com/minecraft/mc-mods/allweapon"
+logoFile="allweapon.png"
+description = '''
+一叶一枝、一花一石、无形之风、九霄之雷、柔似滴水、钢似庚金
+天地万物，皆可化为兵刃。
+A leaf, a twig, a flower, a stone;
+The formless wind, a thunderbolt from the highest heavens;
+Gentle as a drop of water, hard as metallic steel—
+Everything under heaven can be shaped into a weapon.
+'''
+
+#拔刀剑：重锋(前置)
+[[dependencies."${mod_id}"]]
+modId = "slashblade"
+mandatory = true
+versionRange = "[1.1.44,)"
+ordering = "NONE"
+side = "BOTH"
+[[dependencies."${mod_id}"]] #optional
+modId = "forge" #mandatory
+mandatory = true #mandatory
+versionRange = "${forge_version_range}" #mandatory
+ordering = "NONE"
+side = "BOTH"# Here's another dependency
+[[dependencies."${mod_id}"]]
+modId = "minecraft"
+mandatory = true
+versionRange = "${minecraft_version_range}"
+ordering = "NONE"
+side = "BOTH"

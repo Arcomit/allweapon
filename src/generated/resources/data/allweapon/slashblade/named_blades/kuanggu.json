@@ -1,0 +1,21 @@
+{
+  "creativeGroup": "allweapon:all_weapon_tab",
+  "enchantments": [
+    {
+      "id": "minecraft:smite",
+      "lvl": 20
+    }
+  ],
+  "name": "allweapon:kuanggu",
+  "properties": {
+    "max_damage": 120,
+    "sword_type": [
+      "bewitched"
+    ]
+  },
+  "render": {
+    "carry_type": "default",
+    "model": "allweapon:model/blade/huatiankuanggu/model_2.obj",
+    "texture": "allweapon:model/blade/huatiankuanggu/texture.png"
+  }
+}

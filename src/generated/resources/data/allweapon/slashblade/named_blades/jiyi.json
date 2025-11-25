@@ -1,0 +1,20 @@
+{
+  "creativeGroup": "allweapon:all_weapon_tab",
+  "enchantments": [
+    {
+      "id": "minecraft:unbreaking",
+      "lvl": 20
+    }
+  ],
+  "name": "allweapon:jiyi",
+  "properties": {
+    "max_damage": 120,
+    "sword_type": [
+      "bewitched"
+    ]
+  },
+  "render": {
+    "model": "allweapon:model/blade/jiyi/model.obj",
+    "texture": "allweapon:model/blade/jiyi/texture.png"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "creativeGroup": "allweapon:all_weapon_tab",
+  "enchantments": [
+    {
+      "id": "minecraft:infinity",
+      "lvl": 20
+    }
+  ],
+  "name": "allweapon:guangjian",
+  "properties": {
+    "max_damage": 120,
+    "sword_type": [
+      "bewitched"
+    ]
+  },
+  "render": {
+    "model": "allweapon:model/blade/guangjian/model.obj",
+    "texture": "allweapon:model/blade/guangjian/texture.png"
+  }
+}

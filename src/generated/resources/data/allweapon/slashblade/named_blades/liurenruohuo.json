@@ -1,0 +1,28 @@
+{
+  "creativeGroup": "allweapon:all_weapon_tab",
+  "enchantments": [
+    {
+      "id": "minecraft:fire_protection",
+      "lvl": 20
+    },
+    {
+      "id": "minecraft:fire_aspect",
+      "lvl": 20
+    },
+    {
+      "id": "minecraft:flame",
+      "lvl": 20
+    }
+  ],
+  "name": "allweapon:liurenruohuo",
+  "properties": {
+    "max_damage": 120,
+    "sword_type": [
+      "bewitched"
+    ]
+  },
+  "render": {
+    "model": "allweapon:model/blade/liurenruohuo/model.obj",
+    "texture": "allweapon:model/blade/liurenruohuo/texture.png"
+  }
+}

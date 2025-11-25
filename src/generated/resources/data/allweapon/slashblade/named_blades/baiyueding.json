@@ -1,0 +1,20 @@
+{
+  "creativeGroup": "allweapon:all_weapon_tab",
+  "enchantments": [
+    {
+      "id": "minecraft:protection",
+      "lvl": 6
+    }
+  ],
+  "name": "allweapon:baiyueding",
+  "properties": {
+    "max_damage": 120,
+    "sword_type": [
+      "bewitched"
+    ]
+  },
+  "render": {
+    "model": "allweapon:model/blade/baiyueding/model.obj",
+    "texture": "allweapon:model/blade/baiyueding/texture.png"
+  }
+}

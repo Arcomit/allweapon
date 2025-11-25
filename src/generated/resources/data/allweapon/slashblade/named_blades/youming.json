@@ -1,0 +1,25 @@
+{
+  "creativeGroup": "allweapon:all_weapon_tab",
+  "enchantments": [
+    {
+      "id": "minecraft:looting",
+      "lvl": 20
+    },
+    {
+      "id": "minecraft:smite",
+      "lvl": 20
+    }
+  ],
+  "name": "allweapon:youming",
+  "properties": {
+    "max_damage": 120,
+    "sword_type": [
+      "bewitched"
+    ]
+  },
+  "render": {
+    "carry_type": "default",
+    "model": "allweapon:model/blade/youming/model.obj",
+    "texture": "allweapon:model/blade/youming/texture.png"
+  }
+}
