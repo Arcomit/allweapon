@@ -1,7 +1,7 @@
 package mod.arcomit.allweapon.specialarts;
 
-import mod.arcomit.allweapon.util.FindEntityUtils;
-import mod.arcomit.allweapon.util.entity.HuanYingDieSpawner;
+import mod.arcomit.allweapon.util.entity.FindEntityUtils;
+import mod.arcomit.allweapon.util.spawner.HuanYingDieSpawner;
 import mods.flammpfeil.slashblade.item.ItemSlashBlade;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;

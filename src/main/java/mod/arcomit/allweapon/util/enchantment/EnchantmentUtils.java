@@ -1,4 +1,4 @@
-package mod.arcomit.allweapon.util;
+package mod.arcomit.allweapon.util.enchantment;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;

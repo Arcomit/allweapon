@@ -2,6 +2,7 @@ package mod.arcomit.allweapon.entity;
 
 import mods.flammpfeil.slashblade.SlashBladeConfig;
 import mods.flammpfeil.slashblade.util.AttackManager;
+import mods.flammpfeil.slashblade.util.TargetSelector;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -481,11 +482,6 @@ public class HuanYingDieEntity extends Projectile{
                 continue;
             }
 
-            // 只追踪生物实体
-            if (!(entity instanceof LivingEntity)) {
-                continue;
-            }
-
             // 如果有主人，优先追踪对主人有敌意的目标
             if (owner instanceof LivingEntity livingOwner) {
                 LivingEntity livingEntity = (LivingEntity) entity;
@@ -514,13 +510,19 @@ public class HuanYingDieEntity extends Projectile{
     //判断能否攻击实体
     @Override
     protected boolean canHitEntity(Entity entity) {
-        if (entity.isSpectator()) return false;
-        if (!entity.canBeHitByProjectile()) return false;
+        if (!(entity instanceof LivingEntity livingEntity)) return false;
+        if (livingEntity.isSpectator()) return false;
+        if (!livingEntity.canBeHitByProjectile()) return false;
         Entity owner = this.getOwner();
         if (owner != null){
             //发射者，发射者坐骑上的其它乘客，发射者的坐骑，发射者的乘客都不能被攻击
-            if (owner == entity || owner.isPassengerOfSameVehicle(entity) || owner.getVehicle() == entity || owner == entity.getRootVehicle()) {
+            if (owner == livingEntity || owner.isPassengerOfSameVehicle(livingEntity) || owner.getVehicle() == livingEntity || owner == livingEntity.getRootVehicle()) {
                 return false;
+            }
+            if (owner instanceof LivingEntity livingOwner){
+                if (!TargetSelector.test.test(livingOwner, livingEntity)) {
+                    return false;
+                }
             }
         }
 

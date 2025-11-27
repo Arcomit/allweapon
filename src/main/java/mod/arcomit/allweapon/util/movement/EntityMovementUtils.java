@@ -1,7 +1,8 @@
-package mod.arcomit.allweapon.util;
+package mod.arcomit.allweapon.util.movement;
 
-import mod.arcomit.allweapon.network.EntityMovementPacket;
+import mod.arcomit.allweapon.network.PlayerMovementPacket;
 import mod.arcomit.allweapon.network.NetworkHandler;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.phys.Vec3;
@@ -36,8 +37,11 @@ public class EntityMovementUtils {
             SERVER_MOVEMENT_INFO.put(entity, new EntityMovementInfo(entity.getDeltaMovement(), direction, totalDistance, totalTicks));
 
             // 发送数据包到客户端
-            EntityMovementPacket packet = new EntityMovementPacket(entity.getId(), direction, totalDistance, totalTicks);
-            NetworkHandler.sendToTrackingEntityAndSelf(packet, entity);
+            if (entity instanceof ServerPlayer player) {
+                PlayerMovementPacket packet = new PlayerMovementPacket(entity.getId(), direction, totalDistance, totalTicks);
+                NetworkHandler.sendToPlayer(packet, player);
+            }
+
         }
     }
 
@@ -68,9 +72,6 @@ public class EntityMovementUtils {
             int totalTicks = movementInfo.getTotalTicks();
 
             if (movementInfo.getMovedTick() < totalTicks) {
-                // 每tick移动的距离
-                Vec3 oldPos = entity.position();
-
                 double distancePerTick = movementInfo.getTotalDistance() / totalTicks;
                 Vec3 normalizedDir = movementInfo.getDirection().normalize();
                 Vec3 movement = normalizedDir.scale(distancePerTick);
@@ -78,16 +79,16 @@ public class EntityMovementUtils {
                 // 使用move方法进行移动，这样会正确处理碰撞和服务器验证
                 entity.move(MoverType.SELF, movement);
 
+                if (entity instanceof ServerPlayer player){
+                    if (player.connection != null) {
+                        player.connection.resetPosition();
+                    }
+                }
+
                 // 重置delta movement以防止额外的移动
                 entity.setDeltaMovement(Vec3.ZERO);
 
                 movementInfo.setMovedTick(movementInfo.getMovedTick() + 1);
-                movementInfo.setMovedDistance(movementInfo.getMovedDistance() + oldPos.distanceTo(entity.position()));
-
-                // 只在服务器端打印日志
-                if (!entity.level().isClientSide) {
-                    System.out.println("移动距离：" + movementInfo.getMovedDistance() + "/" + movementInfo.getTotalDistance());
-                }
             } else {
                 // 移动结束，恢复初始加速度
                 entity.setDeltaMovement(movementInfo.getOldDeltaMovement());

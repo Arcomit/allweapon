@@ -1,7 +1,7 @@
 package mod.arcomit.allweapon.init;
 
 import mod.arcomit.allweapon.AllWeapon;
-import mod.arcomit.allweapon.util.EnchantmentUtils;
+import mod.arcomit.allweapon.util.enchantment.EnchantmentUtils;
 import mods.flammpfeil.slashblade.client.renderer.CarryType;
 import mods.flammpfeil.slashblade.item.SwordType;
 import mods.flammpfeil.slashblade.registry.slashblade.EnchantmentDefinition;

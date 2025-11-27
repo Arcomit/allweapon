@@ -1,13 +1,11 @@
 package mod.arcomit.allweapon.specialarts;
 
-import mod.arcomit.allweapon.util.EntityMovementUtils;
-import mod.arcomit.allweapon.util.FindEntityUtils;
+import mod.arcomit.allweapon.util.movement.EntityMovementUtils;
+import mod.arcomit.allweapon.util.entity.FindEntityUtils;
 import mods.flammpfeil.slashblade.item.ItemSlashBlade;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.Vec3;
-
-import java.util.Optional;
 
 /**
  * @Author: Arcomit
@@ -36,22 +34,22 @@ public class YiShan {
 
         if (target != null) {
             // 计算从玩家到目标的方向向量
-            Vec3 directionToTarget = target.position().subtract(user.position());
-            float distanceToTarget = target.distanceTo(user);
-            EntityMovementUtils.startLinearMove(
-                    user,
-                    directionToTarget,
-                    distanceToTarget,
-                    3
-            );
-//            Vec3 directionToTarget = user.position().subtract(target.position());
-//            float distanceToTarget = user.distanceTo(target);
+//            Vec3 directionToTarget = target.position().subtract(user.position());
+//            float distanceToTarget = target.distanceTo(user);
 //            EntityMovementUtils.startLinearMove(
-//                    target,
+//                    user,
 //                    directionToTarget,
 //                    distanceToTarget,
 //                    3
 //            );
+            Vec3 directionToTarget = user.position().subtract(target.position());
+            float distanceToTarget = user.distanceTo(target);
+            EntityMovementUtils.startLinearMove(
+                    target,
+                    directionToTarget,
+                    distanceToTarget,
+                    200
+            );
         }else {
             // 没有目标时，朝玩家视线方向移动
             Vec3 lookDirection = user.getLookAngle();

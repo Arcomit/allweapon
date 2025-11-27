@@ -1,4 +1,4 @@
-package mod.arcomit.allweapon.util;
+package mod.arcomit.allweapon.util.fluid;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;

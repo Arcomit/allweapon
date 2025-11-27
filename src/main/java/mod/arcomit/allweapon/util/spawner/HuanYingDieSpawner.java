@@ -1,4 +1,4 @@
-package mod.arcomit.allweapon.util.entity;
+package mod.arcomit.allweapon.util.spawner;
 
 import mod.arcomit.allweapon.entity.HuanYingDieEntity;
 import mod.arcomit.allweapon.init.AwEntityTypes;

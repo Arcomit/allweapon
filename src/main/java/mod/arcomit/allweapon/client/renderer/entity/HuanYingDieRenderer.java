@@ -4,6 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 import mod.arcomit.allweapon.entity.HuanYingDieEntity;
+import mod.arcomit.allweapon.init.AwRenderTypes;
 import mods.flammpfeil.slashblade.client.renderer.model.BladeModelManager;
 import mods.flammpfeil.slashblade.client.renderer.model.obj.WavefrontObject;
 import mods.flammpfeil.slashblade.client.renderer.util.BladeRenderState;
@@ -137,7 +138,7 @@ public class HuanYingDieRenderer<T extends HuanYingDieEntity> extends EntityRend
      */
     private TrailRenderContext createTrailRenderContext(T entity, float partialTicks, MultiBufferSource bufferIn) {
         ResourceLocation tex = getTextureLocation(entity);
-        VertexConsumer builder = bufferIn.getBuffer(Test.getSlashBladeBlendLuminous(tex));
+        VertexConsumer builder = bufferIn.getBuffer(AwRenderTypes.getQuadsBlendLuminous(tex));
         Vec3 camPos = this.entityRenderDispatcher.camera.getPosition();
         Vec3 entityPos = getInterpolatedEntityPosition(entity, partialTicks);
         TrailColor color = new TrailColor(entity.getColor());

@@ -1,4 +1,4 @@
-package mod.arcomit.allweapon.util;
+package mod.arcomit.allweapon.util.movement;
 
 import lombok.*;
 import net.minecraft.world.phys.Vec3;
@@ -22,8 +22,5 @@ public class EntityMovementInfo {
     // 当前已经移动过的刻数
     @Setter
     private int movedTick;
-    // 当前已经移动的距离
-    @Setter
-    private double movedDistance;
 
 }

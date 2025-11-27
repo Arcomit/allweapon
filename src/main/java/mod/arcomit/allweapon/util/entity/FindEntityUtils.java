@@ -1,4 +1,4 @@
-package mod.arcomit.allweapon.util;
+package mod.arcomit.allweapon.util.entity;
 
 import mods.flammpfeil.slashblade.entity.IShootable;
 import mods.flammpfeil.slashblade.util.TargetSelector;

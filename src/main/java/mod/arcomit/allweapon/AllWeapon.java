@@ -30,14 +30,13 @@ public class AllWeapon {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         IEventBus forgeEventBus = MinecraftForge.EVENT_BUS;
 
-        // 注册网络
-        NetworkHandler.register();
-
         AwItems.register(modEventBus);
         AwTabs.register(modEventBus);
         AwSpecialArts.register(modEventBus);
         AwComboStates.register(modEventBus);
         AwEntityTypes.register(modEventBus);
+
+        NetworkHandler.register();
     }
 
     public static ResourceLocation prefix(String path) {

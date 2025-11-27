@@ -1,9 +1,7 @@
 package mod.arcomit.allweapon.event;
 
 import mod.arcomit.allweapon.init.AwBlades;
-import mod.arcomit.allweapon.util.EnchantmentUtils;
-import mod.arcomit.allweapon.util.MultiBlockStructureChecker;
-import mod.arcomit.allweapon.util.StructurePattern;
+import mod.arcomit.allweapon.util.enchantment.EnchantmentUtils;
 import mods.flammpfeil.slashblade.SlashBlade;
 import mods.flammpfeil.slashblade.event.SlashBladeEvent;
 import mods.flammpfeil.slashblade.item.ItemSlashBlade;
@@ -11,13 +9,9 @@ import mods.flammpfeil.slashblade.recipe.RequestDefinition;
 import mods.flammpfeil.slashblade.recipe.SlashBladeIngredient;
 import mods.flammpfeil.slashblade.registry.SlashBladeItems;
 import mods.flammpfeil.slashblade.registry.slashblade.EnchantmentDefinition;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantments;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
