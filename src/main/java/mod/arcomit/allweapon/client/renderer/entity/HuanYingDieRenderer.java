@@ -152,7 +152,72 @@ public class HuanYingDieRenderer<T extends HuanYingDieEntity> extends EntityRend
     private void renderTrailWithContext(List<Vec3> trail, PoseStack matrixStack,
                                        TrailRenderContext context, int packedLight) {
         Vec3[] tangents = calculateTangents(trail);
-        renderTrailSegments(trail, tangents, matrixStack, context, packedLight);
+        Vec3[] rightVectors = calculateRightVectors(trail, tangents, context);
+        renderTrailSegments(trail, tangents, rightVectors, matrixStack, context, packedLight);
+    }
+
+    /**
+     * 预计算所有拖尾点的右向量，确保连续性
+     */
+    private Vec3[] calculateRightVectors(List<Vec3> trail, Vec3[] tangents, TrailRenderContext context) {
+        int count = trail.size();
+        Vec3[] rightVectors = new Vec3[count];
+
+        for (int i = 0; i < count; i++) {
+            Vec3 pos = trail.get(i);
+            Vec3 tangent = tangents[i];
+            Vec3 r = pos.subtract(context.entityPos);
+            Vec3 viewDir = context.camPos.subtract(context.entityPos).subtract(r);
+
+            Vec3 right = viewDir.cross(tangent);
+
+            if (right.length() <= 1e-6) {
+                // 使用摄像机方向作为备选
+                Quaternionf camOrient = this.entityRenderDispatcher.cameraOrientation();
+                org.joml.Vector3f tmp = new org.joml.Vector3f(1f, 0f, 0f);
+                camOrient.transform(tmp);
+                right = new Vec3(tmp.x(), tmp.y(), tmp.z());
+            }
+
+            rightVectors[i] = right.normalize();
+        }
+
+        // 平滑右向量，减少突变
+        smoothRightVectors(rightVectors);
+
+        return rightVectors;
+    }
+
+    /**
+     * 平滑右向量，避免相邻段之间的突变
+     */
+    private void smoothRightVectors(Vec3[] rightVectors) {
+        if (rightVectors.length < 2) return;
+
+        Vec3[] smoothed = new Vec3[rightVectors.length];
+        smoothed[0] = rightVectors[0];
+
+        for (int i = 1; i < rightVectors.length - 1; i++) {
+            // 使用加权平均平滑
+            Vec3 prev = rightVectors[i - 1];
+            Vec3 curr = rightVectors[i];
+            Vec3 next = rightVectors[i + 1];
+
+            // 检查方向一致性，如果反向则翻转
+            if (curr.dot(prev) < 0) {
+                curr = curr.scale(-1);
+            }
+            if (next.dot(curr) < 0) {
+                next = next.scale(-1);
+            }
+
+            smoothed[i] = prev.scale(0.25).add(curr.scale(0.5)).add(next.scale(0.25)).normalize();
+        }
+
+        smoothed[rightVectors.length - 1] = rightVectors[rightVectors.length - 1];
+
+        // 复制回原数组
+        System.arraycopy(smoothed, 0, rightVectors, 0, smoothed.length);
     }
 
     /**
@@ -191,8 +256,8 @@ public class HuanYingDieRenderer<T extends HuanYingDieEntity> extends EntityRend
     /**
      * 渲染拖尾的所有分段
      */
-    private void renderTrailSegments(List<Vec3> trail, Vec3[] tangents, PoseStack matrixStack,
-                                      TrailRenderContext context, int packedLight) {
+    private void renderTrailSegments(List<Vec3> trail, Vec3[] tangents, Vec3[] rightVectors,
+                                      PoseStack matrixStack, TrailRenderContext context, int packedLight) {
         int count = trail.size();
         Matrix4f mat = matrixStack.last().pose();
         Matrix3f normal = matrixStack.last().normal();
@@ -201,7 +266,7 @@ public class HuanYingDieRenderer<T extends HuanYingDieEntity> extends EntityRend
             float t0 = (float) i / Math.max(1, count - 1);
             float t1 = (float) (i + 1) / Math.max(1, count - 1);
 
-            renderTrailSegment(trail.get(i), trail.get(i + 1), tangents[i], tangents[i + 1],
+            renderTrailSegment(trail.get(i), trail.get(i + 1), rightVectors[i], rightVectors[i + 1],
                               t0, t1, mat, normal, context, packedLight);
         }
     }
@@ -209,13 +274,11 @@ public class HuanYingDieRenderer<T extends HuanYingDieEntity> extends EntityRend
     /**
      * 渲染单个拖尾分段
      */
-    private void renderTrailSegment(Vec3 p0, Vec3 p1, Vec3 tan0, Vec3 tan1,
+    private void renderTrailSegment(Vec3 p0, Vec3 p1, Vec3 right0, Vec3 right1,
                                      float t0, float t1, Matrix4f mat, Matrix3f normal,
                                      TrailRenderContext context, int packedLight) {
         Vec3 r0 = p0.subtract(context.entityPos);
         Vec3 r1 = p1.subtract(context.entityPos);
-
-        Vec3 right = calculateRightVector(tan0, tan1, p0, p1, r0, context.camPos, context.entityPos);
 
         // 计算分段宽度（带尖锐化效果）
         float baseSize = 0.2f;
@@ -223,47 +286,23 @@ public class HuanYingDieRenderer<T extends HuanYingDieEntity> extends EntityRend
         float outerHalf0 = calculateSegmentWidth(baseSize, t0, sharpenStart);
         float outerHalf1 = calculateSegmentWidth(baseSize, t1, sharpenStart);
 
-        // 计算四个顶点位置
-        Vec3 o0a = r0.add(right.scale(outerHalf0));
-        Vec3 o0b = r0.subtract(right.scale(outerHalf0));
-        Vec3 o1a = r1.add(right.scale(outerHalf1));
-        Vec3 o1b = r1.subtract(right.scale(outerHalf1));
+        // 使用预计算的右向量计算四个顶点位置，确保精确对齐
+        Vec3 o0a = r0.add(right0.scale(outerHalf0));
+        Vec3 o0b = r0.subtract(right0.scale(outerHalf0));
+        Vec3 o1a = r1.add(right1.scale(outerHalf1));
+        Vec3 o1b = r1.subtract(right1.scale(outerHalf1));
 
         // 计算颜色（带指数衰减）
         float[] color0 = context.color.calculateColor(t0, 0.35f, 0.85f, 1.5);
         float[] color1 = context.color.calculateColor(t1, 0.35f, 0.65f, 1.5);
 
-        // 渲染四边形
+        // 渲染四边形，确保顶点顺序一致
         addVertex(context.builder, mat, normal, o0a, color0, 0f, 0f, packedLight);
         addVertex(context.builder, mat, normal, o0b, color0, 0f, 1f, packedLight);
         addVertex(context.builder, mat, normal, o1b, color1, 1f, 1f, packedLight);
         addVertex(context.builder, mat, normal, o1a, color1, 1f, 0f, packedLight);
     }
 
-    /**
-     * 计算拖尾分段的右向量（面向摄像机）
-     */
-    private Vec3 calculateRightVector(Vec3 tan0, Vec3 tan1, Vec3 p0, Vec3 p1, Vec3 r0, Vec3 camPos, Vec3 entityPos) {
-        Vec3 segTan = tan0.add(tan1).scale(0.5);
-        if (segTan.length() <= 1e-6) {
-            segTan = p1.subtract(p0).normalize();
-        } else {
-            segTan = segTan.normalize();
-        }
-
-        Vec3 viewDir = camPos.subtract(entityPos).subtract(r0);
-        Vec3 right = viewDir.cross(segTan);
-
-        if (right.length() <= 1e-6) {
-            // 使用摄像机方向作为备选
-            Quaternionf camOrient = this.entityRenderDispatcher.cameraOrientation();
-            org.joml.Vector3f tmp = new org.joml.Vector3f(1f, 0f, 0f);
-            camOrient.transform(tmp);
-            right = new Vec3(tmp.x(), tmp.y(), tmp.z());
-        }
-
-        return right.normalize();
-    }
 
     /**
      * 计算拖尾分段宽度（带尖锐化效果）
