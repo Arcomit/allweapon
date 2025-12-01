@@ -1,11 +1,7 @@
 package mod.arcomit.allweapon;
 
 import com.mojang.logging.LogUtils;
-import mod.arcomit.allweapon.init.AwComboStates;
-import mod.arcomit.allweapon.init.AwEntityTypes;
-import mod.arcomit.allweapon.init.AwItems;
-import mod.arcomit.allweapon.init.AwSpecialArts;
-import mod.arcomit.allweapon.init.AwTabs;
+import mod.arcomit.allweapon.init.*;
 import mod.arcomit.allweapon.network.NetworkHandler;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
@@ -35,6 +31,7 @@ public class AllWeapon {
         AwSpecialArts.register(modEventBus);
         AwComboStates.register(modEventBus);
         AwEntityTypes.register(modEventBus);
+        AwParticleTypes.register(modEventBus);
 
         NetworkHandler.register();
     }
