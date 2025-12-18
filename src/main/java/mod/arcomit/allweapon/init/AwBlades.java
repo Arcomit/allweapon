@@ -53,6 +53,7 @@ public class AwBlades {
                                 .standbyRenderType(CarryType.PSO2)
                                 .build(),
                         PropertiesDefinition.Builder.newInstance()
+                                .slashArtsType(AwSpecialArts.HUAN_YING_DIE.getId())
                                 .baseAttackModifier(4.0F)
                                 .maxDamage(120)
                                 .defaultSwordType(List.of(SwordType.BEWITCHED))
@@ -193,6 +194,7 @@ public class AwBlades {
                                 .standbyRenderType(CarryType.PSO2)
                                 .build(),
                         PropertiesDefinition.Builder.newInstance()
+                                .slashArtsType(AwSpecialArts.BAI_GU_HUAN_DIE.getId())
                                 .baseAttackModifier(4.0f)
                                 .maxDamage(120)
                                 .defaultSwordType(List.of(SwordType.BEWITCHED))

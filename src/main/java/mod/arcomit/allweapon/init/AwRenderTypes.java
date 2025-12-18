@@ -41,13 +41,13 @@ public class AwRenderTypes extends RenderStateShard {
                 t -> {
                     RenderType.CompositeState state = RenderType.CompositeState.builder()
                             .setShaderState(RenderStateShard.RENDERTYPE_ENTITY_TRANSLUCENT_EMISSIVE_SHADER)
-                            .setOutputState(ITEM_ENTITY_TARGET)
+                            .setOutputState(RenderStateShard.ITEM_ENTITY_TARGET)
                             .setCullState(RenderStateShard.NO_CULL)
                             .setTextureState(new RenderStateShard.TextureStateShard(t, true, true))
-                            .setTransparencyState(LIGHTNING_ADDITIVE_TRANSPARENCY)
+                            .setTransparencyState(AwRenderTypes.LIGHTNING_ADDITIVE_TRANSPARENCY)
                             .setLightmapState(RenderStateShard.LIGHTMAP)
-                            .setOverlayState(OVERLAY)
-                            .setWriteMaskState(COLOR_WRITE)
+                            .setOverlayState(RenderStateShard.OVERLAY)
+                            .setWriteMaskState(RenderStateShard.COLOR_WRITE)
                             .createCompositeState(false);
 
                     return RenderType.create(

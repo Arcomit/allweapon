@@ -98,6 +98,16 @@ dependencies {
     implementation fg.deobf("mods.flammpfeil.slashblade:SlashBladeResharped-1.20.1:1.8.61")
     implementation fg.deobf("curse.maven:playeranimator-658587:4587214")
 
+    //光渲染库
+    implementation fg.deobf("mod.arcomit.lucisrenderlib:lucisrenderlib:1.0.0")
+
+    //NBT编辑器
+    implementation fg.deobf("curse.maven:nbtedit-reborn-678133:5984630")
+    //配置编辑器
+    implementation fg.deobf("curse.maven:configured-457570:5180900")
+    //加速渲染
+    implementation fg.deobf("curse.maven:accelerated-rendering-1314021:7342975")
+
     //JEI
     compileOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"))
     compileOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}"))
